@@ -6,17 +6,24 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import androidx.recyclerview.widget.LinearLayoutManager
+import kotlinx.android.synthetic.main.content_main.*
 import java.lang.Exception
 
 private const val TAG = "MainActivity"
 
 class MainActivity : AppCompatActivity(), GetRawData.OnDownloadComplete, GetFlickrJsonData.OnDataAvailable {
 
+    private val flickrRecyclerViewAdapter = FlickrRecyclerViewAdapter(ArrayList())
+
     override fun onCreate(savedInstanceState: Bundle?) {
         Log.d(TAG, "onCreate called")
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(findViewById(R.id.toolbar))
+
+        recycler_view.layoutManager = LinearLayoutManager(this)
+        recycler_view.adapter = flickrRecyclerViewAdapter
 
         val url = createUri("https://api.flickr.com/services/feeds/photos_public.gne", "android,oreo", "en-us", true)
         val getRawData = GetRawData(this)
@@ -82,6 +89,7 @@ class MainActivity : AppCompatActivity(), GetRawData.OnDownloadComplete, GetFlic
 
     override fun onDataAvailable(data: List<Photo>) {
         Log.d(TAG, ".onDataAvailable called, data is $data")
+        flickrRecyclerViewAdapter.loadNewData(data)
         Log.d(TAG, ".onDataAvailable ends")
     }
 
