@@ -6,9 +6,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 
-class MainActivity : AppCompatActivity() {
+private const val TAG = "MainActivity"
 
-    private val TAG = "MainActivity"
+class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         Log.d(TAG, "onCreate called")
