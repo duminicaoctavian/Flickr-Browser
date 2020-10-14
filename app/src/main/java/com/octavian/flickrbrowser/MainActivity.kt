@@ -24,6 +24,7 @@ class MainActivity : AppCompatActivity(), GetRawData.OnDownloadComplete {
 //            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
 //                    .setAction("Action", null).show()
 //        }
+        // you cannot catch exceptions thrown from a different thread!
 
         Log.d(TAG, "onCreate ends")
     }
