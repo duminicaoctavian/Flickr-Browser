@@ -13,9 +13,17 @@ enum class DownloadStatus {
 
 private const val TAG = "GetRawData" // this is file private
 
-class GetRawData : AsyncTask<String, Void, String>() {
+class GetRawData(private val listener: OnDownloadComplete) : AsyncTask<String, Void, String>() {
 
     private var downloadStatus = DownloadStatus.IDLE
+    interface OnDownloadComplete {
+        fun onDownloadComplete(data: String, status: DownloadStatus)
+    }
+//    private var listener: MainActivity? = null
+
+//    fun setDownloadCompleteListener(callbackObject: MainActivity) {
+//        listener = callbackObject
+//    }
 
     override fun doInBackground(vararg params: String?): String {
 
@@ -51,7 +59,9 @@ class GetRawData : AsyncTask<String, Void, String>() {
         }
     }
 
-    override fun onPostExecute(result: String?) {
+    override fun onPostExecute(result: String) {
         Log.d(TAG, "onPostExecute called, parameter is $result")
+//        listener?.onDownloadComplete(result, downloadStatus)
+        listener.onDownloadComplete(result, downloadStatus)
     }
 }
