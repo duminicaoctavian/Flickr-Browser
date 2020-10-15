@@ -19,7 +19,7 @@ class FlickrImageViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 class FlickrRecyclerViewAdapter(private var photoList: List<Photo>) : RecyclerView.Adapter<FlickrImageViewHolder>() {
 
     override fun getItemCount(): Int {
-        Log.d(TAG, ".getItemCount called")
+//        Log.d(TAG, ".getItemCount called")
         return if (photoList.isNotEmpty()) photoList.size else 0
     }
 
@@ -36,7 +36,7 @@ class FlickrRecyclerViewAdapter(private var photoList: List<Photo>) : RecyclerVi
         // Called by the layout manager when it wands new data in an existing view
 
         val photoItem = photoList[position]
-        Log.d(TAG, ".onBindViewHolder: ${photoItem.title} --> $position")
+//        Log.d(TAG, ".onBindViewHolder: ${photoItem.title} --> $position")
         Picasso.with(holder.thumbnail.context)
             .load(photoItem.image)
             .error(R.drawable.placeholder)
