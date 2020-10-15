@@ -45,7 +45,6 @@ class RecyclerItemClickListener(context: Context, recyclerView: RecyclerView, pr
         Log.d(TAG, ".onInterceptTouchEvent: starts $e")
         val result = gestureDetector.onTouchEvent(e)
         Log.d(TAG, ".onInterceptTouchEvent() returning: $result")
-//        return super.onInterceptTouchEvent(rv, e)
-        return true
+        return result
     }
 }
