@@ -1,14 +1,19 @@
 package com.octavian.flickrbrowser
 
+import android.os.Parcelable
 import android.util.Log
+import kotlinx.android.parcel.Parcelize
 import java.io.IOException
 import java.io.ObjectStreamException
 import java.io.Serializable
 
 private const val TAG = "Photo"
 
+//class Photo(var title: String, var author: String, var authorId: String,
+//            var link: String, var tags: String, var image: String) : Serializable {
+@Parcelize
 class Photo(var title: String, var author: String, var authorId: String,
-            var link: String, var tags: String, var image: String) : Serializable {
+            var link: String, var tags: String, var image: String) : Parcelable {
 
     // Serializable can be slow due to reflection
     // That is why we need to implement additional methods
