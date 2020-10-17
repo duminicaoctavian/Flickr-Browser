@@ -3,7 +3,6 @@
     <style name="Theme.FlickrBrowser.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-        <item name="android:colorBackgroundFloating">@color/primaryColor</item>
         <item name="android:navigationBarColor">@color/primaryDarkColor</item>
     </style>
 </resources>
