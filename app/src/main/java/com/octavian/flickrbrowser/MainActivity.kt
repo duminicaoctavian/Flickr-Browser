@@ -31,11 +31,7 @@ class MainActivity : BaseActivity(), GetRawData.OnDownloadComplete,
         recycler_view.addOnItemTouchListener(RecyclerItemClickListener(this, recycler_view, this))
         recycler_view.adapter = flickrRecyclerViewAdapter
 
-        val url = createUri("https://api.flickr.com/services/feeds/photos_public.gne", "android,oreo", "en-us", true)
-        val getRawData = GetRawData(this)
 //        getRawData.setDownloadCompleteListener(this)
-        getRawData.execute(url)
-
 //        findViewById<FloatingActionButton>(R.id.fab).setOnClickListener { view ->
 //            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
 //                    .setAction("Action", null).show()
@@ -125,5 +121,15 @@ class MainActivity : BaseActivity(), GetRawData.OnDownloadComplete,
     override fun onResume() {
         Log.d(TAG, ".onResume starts")
         super.onResume()
+
+        val sharedPref = PreferenceManager.getDefaultSharedPreferences(applicationContext)
+        val queryResult = sharedPref.getString(FLICKR_QUERY, "")
+
+        if (queryResult != null && queryResult.isNotEmpty()) {
+            val url = createUri("https://api.flickr.com/services/feeds/photos_public.gne", queryResult, "en-us", true)
+            val getRawData = GetRawData(this)
+            getRawData.execute(url)
+        }
+        Log.d(TAG, ".onResume ends")
     }
 }
