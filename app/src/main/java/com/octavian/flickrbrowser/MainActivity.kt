@@ -9,6 +9,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.preference.PreferenceManager
 import kotlinx.android.synthetic.main.content_main.*
 import java.lang.Exception
 
